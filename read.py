@@ -1,15 +1,27 @@
 import mfrc522
 from oled import oled, show_loading
-import urequests
+# from oled import test
 
 
-def read(url):
-    rdr = mfrc522.MFRC522(0, 2, 4, 5, 14)
+
+# def post_api(tag, url):
+#     data = {'body':{'tag':'%s'}} % tag
+#     headers = {'Content-Type': 'application/json'}
+#
+#     r = urequests.post(url, data=data, headers=headers)
+#     print(r.json())
+
+
+def read(url=None):
+    import urequests
+    # import ur as urequests
+
+    rdr = mfrc522.MFRC522(14, 13, 12, 2, 15)
 
     try:
         while True:
 
-            (stat, tag_type) = rdr.request(rdr.REQIDL)
+            (stat, tag_type) = rdr.request(rdr.REQALL)
 
             oled.fill(0)
             oled.show()
@@ -33,18 +45,22 @@ def read(url):
 
                     data = '{"body":{"tag":"%s", "student":"", "scanned":null}}' % str(tag_id)
                     headers = {'Content-Type': 'application/json'}
-                    print(data)
-                    try:
+                    # try:
+                    if url != None:
                         r = urequests.post(url, data=data, headers=headers)
+                        # r = urequests.get(url)
                         oled.fill(0)
                         oled.text(str(r.json()), 0, 10)
                         oled.show()
+                        # test(str(r.json()))3
                         print(r.json())
-                    except:
-                        oled.fill(0)
-                        oled.text('Error. Retry', 0, 10)
-                        oled.show()
-                        print('error post api')
+                    else:
+                        continue
+                    # except:
+                    #     oled.fill(0)
+                    #     oled.text('Error. Retry', 0, 10)
+                    #     oled.show()
+                    #     print('error post api')
                 else:
                     oled.text('Error. Retry', 0, 10)
                     oled.show()
