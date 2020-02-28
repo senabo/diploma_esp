@@ -1,0 +1,14 @@
+adafruit-ampy==1.0.7
+altgraph==0.17
+Click==7.0
+docopt==0.6.2
+ecdsa==0.15
+esptool==2.8
+freetype-py==2.1.0.post1
+mfrc522==0.0.7
+pyaes==1.6.1
+pyflakes==2.1.1
+PyInstaller==3.6
+pyserial==3.4
+python-dotenv==0.11.0
+six==1.14.0
