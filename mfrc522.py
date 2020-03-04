@@ -1,5 +1,4 @@
 from machine import Pin, SPI
-# from os import uname
 
 
 class MFRC522:
@@ -21,20 +20,10 @@ class MFRC522:
         self.cs = Pin(cs, Pin.OUT)
 
         self.rst.value(0)
-        # self.cs.value(1)
 
-        # board = uname()[0]
-
-        # if board == 'WiPy' or board == 'LoPy' or board == 'FiPy':
-        # 	self.spi = SPI(0)
-        # 	self.spi.init(SPI.MASTER, baudrate=1000000, pins=(self.sck, self.mosi, self.miso))
-        # board == 'esp8266':
-        # baudrate = 100000
-        # self.spi = SPI(baudrate=100000, polarity=0, phase=0, sck=self.sck, mosi=self.mosi, miso=self.miso)
+        #Setting hardware SPI
         self.spi = SPI(1, baudrate=10000000, polarity=0, phase=0)
         self.spi.init()
-        # else:
-        # 	raise RuntimeError("Unsupported platform")
 
         self.rst.value(1)
         self.init()
