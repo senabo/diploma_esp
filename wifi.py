@@ -1,4 +1,4 @@
-def connect(ssid="Senkiv", password="senkiv0502036356"):
+def connect(ssid="ssid", password="pass"):
     import network
 
     station = network.WLAN(network.STA_IF)
@@ -28,9 +28,3 @@ def disconnect():
     print("Disconnection successful")
     print('network sta config: ', sta_if.ifconfig())
     print('network ap config: ', ap_if.ifconfig())
-
-# ssid = "Senkiv"
-# password = "senkiv0502036356"
-
-# ssid = "XPERIA XZ1"
-# password = "12345678"
